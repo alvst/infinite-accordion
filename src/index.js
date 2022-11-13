@@ -1,81 +1,21 @@
-import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 export function ExampleComponent(props) {
   const [displayHeight, setDisplayHeight] = useState(0)
   const [dropdownListOpen, setDropdownListOpen] = useState([])
   const [dropdownListHeight, setDropdownListHeight] = useState([])
   const [currentDropdown, setCurrentDropdown] = useState(0)
-  const [settingsDropDownState, setSettingsDropDownState] = useState(false)
   const delayTiming = props.delay ? props.delay : 0.64
 
   const divRef = useRef({})
   const divRef2 = useRef({})
 
-  async function toggleFileSettings() {
-    setSettingsDropDownState(!settingsDropDownState)
-
-    // setCurrentDropdown(currentDropdown + 1);
-
-    if (props.autoClose === true) {
-      setDisplayHeight(
-        settingsDropDownState ? 0 : divRef2.current[0].scrollHeight
-      )
-    } else {
-      setDisplayHeight(
-        settingsDropDownState ? 0 : divRef2.current[0].scrollHeight
-      )
-    }
-    console.log(
-      'divRef2.current[' + currentDropdown + ']',
-      divRef2.current[currentDropdown].scrollHeight
-    )
-    // console.log(currentDropdown)
-
-    console.log('THis is what should be priting')
-  }
-
-  async function toggleDropdown(id) {
-    const newList = []
-
-    console.log('abc')
-    console.log('currentDropdown ', currentDropdown)
-    console.log('id ', id)
-
-    console.log(divRef2.current[id + 1].scrollHeight)
-
-    if (currentDropdown === id) {
-      setDisplayHeight(displayHeight + divRef2.current[id + 1].scrollHeight)
-      setCurrentDropdown(currentDropdown + 1)
-      for (let index = 0; index < dropdownListOpen.length; index++) {
-        const element = dropdownListOpen[index]
-        if (index === id) {
-          newList.push(true)
-        } else {
-          newList.push(element)
-        }
-      }
-      setDropdownListOpen(newList)
-    } else {
-      if (props.autoClose === true) {
-        // setSettingsDropDownState(!settingsDropDownState);
-        setSettingsDropDownState(false)
-        setDisplayHeight(0)
-      } else {
-        let height = 0
-        for (let index = 0; index < id + 1; index++) {
-          height += divRef2.current[index].scrollHeight
-        }
-        setDisplayHeight(height)
-      }
-
-      setCurrentDropdown(id)
-    }
-  }
-
   async function toggleDropdown2(id) {
     const newList = []
-    console.log(id)
-    console.log(dropdownListOpen[id])
+    // console.log(id)
+    // console.log(dropdownListOpen[id])
+    let additionalHeight = divRef2.current[id].scrollHeight
+
     if (dropdownListOpen[id] === false) {
       // opening it
       for (let index = 0; index < dropdownListOpen.length; index++) {
@@ -83,19 +23,104 @@ export function ExampleComponent(props) {
         if (index === id) {
           newList.push(true)
         } else {
-          newList.push(element)
+          if (props.autoClose) {
+            newList.push(false)
+          } else {
+            newList.push(element)
+          }
         }
       }
 
-      setDisplayHeight(displayHeight + divRef2.current[id].scrollHeight)
+      // console.log(dropdownListOpen)
+      // for (
+      //   let index = currentDropdown + 1;
+      //   index < dropdownListOpen.length;
+      //   index++
+      // ) {
+      //   console.log(index)
+      //   const element = dropdownListOpen[index]
+      //   console.log('abcdefg')
+      //   console.log(element)
+      //   if (element === true) {
+      //     // if (element === false) {
+      //     //   console.log('break')
+      //     //   break
+      //     // }
+      //     console.log('here')
+      //     console.log(element.scrollHeight)
+      //     additionalHeight += element.scrollHeight
+      //   }
+      // }
+
+      // if (props.autoClose === false) {
+      //   console.log('dropdownListOpen')
+      //   console.log(dropdownListOpen)
+      //   for (
+      //     let index = currentDropdown;
+      //     index < dropdownListOpen.length;
+      //     index++
+      //   ) {
+      //     console.log('a1')
+      //     console.log('index', index)
+      //     if (dropdownListOpen[index] === true) {
+      //       additionalHeight += divRef2.current[index].scrollHeight
+      //       console.log('b1')
+      //     }
+      //   }
+      // }
+
+      console.log(dropdownListOpen)
+      console.log(id)
+      console.log(dropdownListOpen.length)
+      for (let index = id; index > dropdownListOpen.length; index++) {
+        console.log(index)
+        const element = dropdownListOpen[index]
+        console.log('abcdefg')
+        console.log(element)
+        if (element === true) {
+          // if (element === false) {
+          //   console.log('break')
+          //   break
+          // }
+          console.log('here')
+          console.log(index)
+          console.log(divRef2.current[index].scrollHeight)
+          console.log(additionalHeight)
+          additionalHeight += divRef2.current[index].scrollHeight
+          console.log(additionalHeight)
+        }
+      }
+
+      console.log('right here')
+
+      setDisplayHeight(displayHeight + additionalHeight)
       setCurrentDropdown(currentDropdown + 1)
 
       console.log(newList)
     } else {
+      let totalMinus = 0
       if (props.autoClose === false) {
-        console.log('False Auto Close')
+        // console.log('False Auto Close')
+        for (let index = 0; index < dropdownListOpen.length; index++) {
+          const element = dropdownListOpen[index]
+          if (index === id) {
+            newList.push(false)
+          } else {
+            newList.push(element)
+          }
+        }
+        for (let index = newList.length; index > id; index--) {
+          // console.log(index - 1)
+          // console.log(divRef2.current[index - 1].scrollHeight)
+          if (dropdownListOpen[index - 1] === true) {
+            totalMinus += divRef2.current[index - 1].scrollHeight
+            // console.log(totalMinus)
+          }
+        }
+        setDisplayHeight(displayHeight - totalMinus)
+        // console.log(newList)
       } else {
-        console.log('closing it')
+        // console.log('closing it')
         for (let index = 0; index < dropdownListOpen.length; index++) {
           const element = dropdownListOpen[index]
           if (index >= id) {
@@ -104,30 +129,58 @@ export function ExampleComponent(props) {
             newList.push(element)
           }
         }
-        let totalMinus = 0
         for (let index = newList.length; index > id; index--) {
-          console.log(index - 1)
-          console.log(divRef2.current[index - 1].scrollHeight)
+          // console.log(index - 1)
+          // console.log(divRef2.current[index - 1].scrollHeight)
           if (dropdownListOpen[index - 1] === true) {
             totalMinus += divRef2.current[index - 1].scrollHeight
             console.log(totalMinus)
           }
         }
         setDisplayHeight(displayHeight - totalMinus)
-        console.log(newList)
+        // console.log(newList)
       }
     }
+
+    console.log('locating')
+
     setDropdownListOpen(newList)
+
+    // console.log(dropdownListOpen)
+    // console.log(id)
+    // console.log(dropdownListOpen.length)
+    // for (let index = id; index < dropdownListOpen.length; index++) {
+    //   console.log(index)
+    //   const element = dropdownListOpen[index]
+    //   console.log('abcdefg')
+    //   console.log(element)
+    //   if (element === true) {
+    //     // if (element === false) {
+    //     //   console.log('break')
+    //     //   break
+    //     // }
+    //     console.log('here')
+    //     console.log(index)
+    //     console.log(divRef2.current[index].scrollHeight)
+    //     console.log(additionalHeight)
+    //     additionalHeight += divRef2.current[index].scrollHeight
+    //     console.log(additionalHeight)
+    //   }
+    // }
+
+    // setDisplayHeight(displayHeight + additionalHeight)
+
+    console.log(newList)
   }
 
   useEffect(() => {
     for (let index = 0; index < props.dropdownContent.length; index++) {
       console.log('debugging')
       setDropdownListOpen((prev) => [...prev, false])
-      setDropdownListHeight([
-        ...dropdownListHeight,
-        divRef2.current[index].scrollHeight
-      ])
+      // setDropdownListHeight([
+      //   ...dropdownListHeight,
+      //   divRef2.current[index].scrollHeight
+      // ])
     }
   }, [])
 

@@ -15,6 +15,10 @@ const App = () => {
             <h1>this is a longer test</h1>
           </div>,
           <DropdownContent2 />,
+          <DropdownContent2 />,
+          <DropdownContent2 />,
+          <DropdownContent2 />,
+          <DropdownContent2 />,
           <div style={{ backgroundColor: 'pink' }}>Testing</div>
         ]}
         autoClose={false}
