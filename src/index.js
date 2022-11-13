@@ -92,26 +92,30 @@ export function ExampleComponent(props) {
 
       console.log(newList)
     } else {
-      console.log('closing it')
-      for (let index = 0; index < dropdownListOpen.length; index++) {
-        const element = dropdownListOpen[index]
-        if (index >= id) {
-          newList.push(false)
-        } else {
-          newList.push(element)
+      if (props.autoClose === false) {
+        console.log('False Auto Close')
+      } else {
+        console.log('closing it')
+        for (let index = 0; index < dropdownListOpen.length; index++) {
+          const element = dropdownListOpen[index]
+          if (index >= id) {
+            newList.push(false)
+          } else {
+            newList.push(element)
+          }
         }
-      }
-      let totalMinus = 0
-      for (let index = newList.length; index > id; index--) {
-        console.log(index - 1)
-        console.log(divRef2.current[index - 1].scrollHeight)
-        if (dropdownListOpen[index - 1] === true) {
-          totalMinus += divRef2.current[index - 1].scrollHeight
-          console.log(totalMinus)
+        let totalMinus = 0
+        for (let index = newList.length; index > id; index--) {
+          console.log(index - 1)
+          console.log(divRef2.current[index - 1].scrollHeight)
+          if (dropdownListOpen[index - 1] === true) {
+            totalMinus += divRef2.current[index - 1].scrollHeight
+            console.log(totalMinus)
+          }
         }
+        setDisplayHeight(displayHeight - totalMinus)
+        console.log(newList)
       }
-      setDisplayHeight(displayHeight - totalMinus)
-      console.log(newList)
     }
     setDropdownListOpen(newList)
   }

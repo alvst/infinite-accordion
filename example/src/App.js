@@ -11,13 +11,13 @@ const App = () => {
         dropdownContent={[
           <div style={{ backgroundColor: 'green' }}>
             {/* asd */}
-            <p style={{ marginTop: '50px' }}>abc</p>
+            <p style={{ marginTop: '0px' }}>abc</p>
             <h1>this is a longer test</h1>
           </div>,
           <DropdownContent2 />,
           <div style={{ backgroundColor: 'pink' }}>Testing</div>
         ]}
-        autoClose={true}
+        autoClose={false}
         // delay={10}
       />
       {/* <p>Testing</p> */}
