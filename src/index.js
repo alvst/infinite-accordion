@@ -173,9 +173,141 @@ export function ExampleComponent(props) {
     console.log(newList)
   }
 
+  function toggleDropdown3(id) {
+    const newList = []
+    console.log(id)
+    // First Thing, switch the dropdownListOpen
+    console.log(dropdownListOpen[id])
+    // This checks to only open the dropdown if it is closed
+    if (dropdownListOpen[id] === false) {
+      // opening it
+      for (let index = 0; index < dropdownListOpen.length; index++) {
+        const element = dropdownListOpen[index]
+        if (index === id) {
+          newList.push(true)
+        } else {
+          if (props.autoClose) {
+            newList.push(false)
+          } else {
+            newList.push(element)
+          }
+        }
+      }
+      console.log(newList)
+      setDropdownListOpen(newList)
+      setCurrentDropdown(id)
+      setDisplayHeight(displayHeight + divRef2.current[id].scrollHeight)
+    } else {
+      // close the dropdown
+      console.log('Click')
+      for (let index = 0; index < dropdownListOpen.length; index++) {
+        const element = dropdownListOpen[index]
+        if (index === id) {
+          newList.push(false)
+        } else {
+          newList.push(element)
+        }
+      }
+      let totalMinus = 0
+      setCurrentDropdown(id)
+      for (let i = id; i < dropdownListOpen.length; i++) {
+        // totalMinus += divRef2.current[i].scrollHeight
+        if (dropdownListOpen[i] === true) {
+          totalMinus += divRef2.current[i].scrollHeight
+        }
+        // if (dropdownListOpen[i] === true) {
+        //   setDisplayHeight(displayHeight - divRef2.current[i].scrollHeight)
+        // }
+      }
+      console.log(totalMinus)
+      setDisplayHeight(displayHeight - totalMinus)
+      // THIS IS THE PIECE WHERE THE OLD VERSION FAILED setDisplayHeight is going to need to be the sum of all the sub dropdowns that are open
+      // setDisplayHeight(displayHeight + divRef2.current[id].scrollHeight)
+    }
+    // Next Set the length of the dropdown
+    // Finally, switch the currentDropdown; currentDropdown should be the most recently opened Dropdown so when
+  }
+
+  let counter = 0
+
+  function toggleDropdown4(id) {
+    const newList = []
+    console.log(counter++)
+    console.log(id)
+    // First Thing, switch the dropdownListOpen
+    console.log(dropdownListOpen[id])
+    // This checks to only open the dropdown if it is closed
+    if (dropdownListOpen[id] === false) {
+      // opening it
+      for (let index = 0; index < dropdownListOpen.length; index++) {
+        const element = dropdownListOpen[index]
+        if (index === id) {
+          newList.push(true)
+        } else {
+          if (props.autoClose) {
+            newList.push(false)
+          } else {
+            newList.push(element)
+          }
+        }
+      }
+      console.log('open')
+      console.log(newList)
+      setDropdownListOpen(newList)
+      setCurrentDropdown(id)
+      let additionalHeight = divRef2.current[id].scrollHeight
+      for (let index = id + 1; index < dropdownListOpen.length; index++) {
+        const element = dropdownListOpen[index]
+        console.log('abcdefg')
+        console.log(id)
+        console.log(index)
+        console.log(element)
+        if (element === true) {
+          console.log('should be here')
+          additionalHeight += divRef2.current[index].scrollHeight
+          console.log(additionalHeight)
+        } else {
+          break
+        }
+      }
+      setDisplayHeight(displayHeight + additionalHeight)
+    } else {
+      console.log('close')
+      // get id of clicked
+      // use that ID to traverse through the list DropDownListOpen
+      // change that ID to false
+      for (let index = 0; index < dropdownListOpen.length; index++) {
+        const element = dropdownListOpen[index]
+        if (index === id) {
+          newList.push(false)
+        } else {
+          newList.push(element)
+        }
+      }
+      let totalMinus = 0
+      // starting in that array, traverse through until there is one that is false and get the sum of those heights
+      for (let index = id; index < dropdownListOpen.length; index++) {
+        const element = dropdownListOpen[index]
+        console.log(element)
+        if (element === true) {
+          totalMinus += divRef2.current[index].scrollHeight
+        } else {
+          break
+        }
+      }
+      console.log(totalMinus)
+      setDisplayHeight(displayHeight - totalMinus)
+      console.log(newList)
+      setDropdownListOpen(newList)
+      // subtract that sum from the displayHeight
+      // set the displayHeight
+      // set the dropdownListOpen
+      // set the currentDropdown
+    }
+  }
+
   useEffect(() => {
     for (let index = 0; index < props.dropdownContent.length; index++) {
-      console.log('debugging')
       setDropdownListOpen((prev) => [...prev, false])
       // setDropdownListHeight([
       //   ...dropdownListHeight,
@@ -198,7 +330,7 @@ export function ExampleComponent(props) {
               <button
                 style={props.buttonStyle[i]}
                 ref={(ref) => (divRef.current[i] = ref)}
-                onClick={() => toggleDropdown2(i + 1)}
+                onClick={() => toggleDropdown4(i + 1)}
               >
                 {props.buttonContent[i]}
               </button>
@@ -212,7 +344,7 @@ export function ExampleComponent(props) {
 
   return (
     <div>
-      <button style={props.buttonStyle[0]} onClick={() => toggleDropdown2(0)}>
+      <button style={props.buttonStyle[0]} onClick={() => toggleDropdown4(0)}>
         {props.buttonContent[0]}
       </button>
 
