@@ -92,7 +92,7 @@ export default function InfiniteDropdown(props) {
                 ref={(ref) => (divRef.current[i] = ref)}
                 onClick={() => toggleDropdown6(i + 1)}
               >
-                {props.buttonContent[i]}
+                {props.buttonContent[i + 1]}
               </button>
             ) : null}
           </div>
@@ -104,7 +104,10 @@ export default function InfiniteDropdown(props) {
 
   return (
     <div>
-      <button style={props.buttonStyle[0]} onClick={() => toggleDropdown6(0)}>
+      <button
+        style={({ cursor: "grab" }, props.buttonStyle[0])}
+        onClick={() => toggleDropdown6(0)}
+      >
         {props.buttonContent[0]}
       </button>
 

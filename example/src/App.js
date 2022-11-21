@@ -7,44 +7,45 @@ const App = () => {
     <div>
       <InfiniteDropdown
         buttonContent={[
-          <DropdownButtonOne />,
-          <> Nested Button 2 Dropdown</>,
-          <>
-            No need to use a button element, it's already nested, all you need
-            to do is style it.
-          </>,
-          // <Content />,
+          <>Welcome to infinite dropdown</>,
+          <>Learn More</>,
+          <StyledButton />,
+          <LearnMore />,
         ]}
         buttonStyle={[
-          { backgroundColor: "red", width: "100%" },
           {},
-          { borderRadius: "30px", padding: "30px" },
-          { backgroundColor: "pink" },
-          { backgroundColor: "yellow" },
+          {},
+          {},
+          // { borderRadius: "30px", padding: "30px" },
+          {
+            backgroundColor: "yellow",
+            borderRadius: "30px",
+            padding: "30px",
+            outline: "none",
+            border: "none",
+          },
         ]}
         dropdownContent={[
-          <div style={{ backgroundColor: "green" }}>
-            <h1>
-              Unlike other Dropdown Libraries, Infinite Accordion Dropdown
-              allows you to have as many nested dropdowns as you want
-            </h1>
-            <h3>
-              You can have multiple items (as long as they are properly
-              wrapped).
-            </h3>
-          </div>,
-          <NestedDropdown />,
-          <div style={{ backgroundColor: "pink" }}>
-            <p>
-              You can customize the speed of the dropdown by passing a delay
-              prop.
-            </p>
-            <p>the default speed is 0.64 seconds.</p>
-          </div>,
           <>
-            Or, if you want to close all child elements, when you click a
-            button, enable autoclose.
+            <h1>
+              Infinite Dropdown enables you to have dropdowns within dropdowns.
+            </h1>
           </>,
+          <>
+            <p>
+              You can, of course, have basically anything within these
+              dropdowns, including text, images, buttons, etc.
+            </p>
+            <img
+              src="https://via.placeholder.com/350x150"
+              alt="Example Image"
+            />
+            <p>
+              <button onClick={() => alert("Hello World")}>Click Me</button>
+            </p>
+          </>,
+          <StyledElementExample />,
+          <LearnMoreExplanation />,
         ]}
         // autoClose={true}
         // delay={10}
@@ -53,31 +54,44 @@ const App = () => {
   );
 };
 
-function NestedDropdown() {
+function StyledButton() {
+  return <>See Styling</>;
+}
+function StyledElementExample() {
   return (
-    <div style={{ backgroundColor: "purple", padding: "15px", color: "red" }}>
-      <h2>Infinite Dropdown is fully customizable</h2>
+    <div style={{ backgroundColor: "red", padding: "15px" }}>
+      <h3>You can style your content however you like.</h3>
+      <h5>You can even style the buttons</h5>
     </div>
   );
 }
 
-function DropdownButtonOne() {
-  return <>Button 1</>;
+function LearnMore() {
+  return <>Learn more about Infinite Accordion</>;
 }
 
-function DropdownButtonTwo() {
+function LearnMoreExplanation() {
   return (
-    <div style={{ background: "transparent", border: "0px solid" }}>
-      Styled button
-    </div>
-  );
-}
+    <>
+      <h2>Infinite Dropdown Customizability</h2>
+      <h5>
+        You can even customize the speed the dropdown comes down is also
+        customizable.
+      </h5>
+      <h3>Dropdown Speed</h3>
 
-function DropdownContent2() {
-  return (
-    <div style={{ backgroundColor: "greenyellow", margin: "0px" }}>
-      <p style={{ margin: "0px" }}>Dropdown 2</p>
-    </div>
+      <p>
+        Using <code>delay</code> you can increase or decrease the speed the
+        dropdown opens and closes. The default is 0.64 seconds which to me feels
+        exactly right.
+      </p>
+      <h3>Automatic Close</h3>
+      <p>
+        By making <code>autoClose=true</code> when you close a accordion, all
+        the daughter accordion's will also be closed. This is turned off by
+        default but can be turned on.
+      </p>
+    </>
   );
 }
 
