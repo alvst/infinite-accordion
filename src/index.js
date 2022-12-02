@@ -3,8 +3,6 @@ import React, { useState, useRef, useEffect } from "react";
 export default function InfiniteDropdown(props) {
   const [displayHeight, setDisplayHeight] = useState(0);
   const [dropdownListOpen, setDropdownListOpen] = useState([]);
-  const [dropdownListHeight, setDropdownListHeight] = useState([]);
-  const [currentDropdown, setCurrentDropdown] = useState(0);
   const delayTiming = props.delay ? props.delay : 0.64;
 
   const divRef = useRef({});

@@ -11,6 +11,7 @@ const App = () => {
           <>Learn More</>,
           <StyledButton />,
           <LearnMore />,
+          <>Features Coming Soon</>,
         ]}
         buttonStyle={[
           {},
@@ -46,6 +47,7 @@ const App = () => {
           </>,
           <StyledElementExample />,
           <LearnMoreExplanation />,
+          <ComingSoon />,
         ]}
         // autoClose={true}
         // delay={10}
@@ -62,6 +64,11 @@ function StyledElementExample() {
     <div style={{ backgroundColor: "red", padding: "15px" }}>
       <h3>You can style your content however you like.</h3>
       <h5>You can even style the buttons</h5>
+      <p>
+        Currently Styling isn't perfect, I plan to work to implement better
+        styling support, It was mostly an afterthought when I originally built
+        this.
+      </p>
     </div>
   );
 }
@@ -91,6 +98,25 @@ function LearnMoreExplanation() {
         the daughter accordion's will also be closed. This is turned off by
         default but can be turned on.
       </p>
+    </>
+  );
+}
+
+function ComingSoon() {
+  return (
+    <>
+      <h1>More Features coming soon</h1>
+      <ul>
+        <li>Better Styling support</li>
+
+        <ul>
+          <li>Styling with Classes</li>
+          <li>Better Styling of dropdown Items</li>
+        </ul>
+
+        <li>Ability to click the entire element to open/close</li>
+        <li>Fixing the bug where cursor property isn't properly showing</li>
+      </ul>
     </>
   );
 }
