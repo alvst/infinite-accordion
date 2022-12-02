@@ -68,6 +68,10 @@ function DropdownContent2() {
 
 ```
 
+## Future Features
+
+Right now, the background of the button is limited to the color of the parent. This is a limitation that I missed when originally creating the
+
 ## License
 
 MIT © [alvst](https://github.com/alvst)
