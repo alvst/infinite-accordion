@@ -1,7 +1,7 @@
 {
   "name": "infinite-accordion",
   "version": "1.0.0",
-  "description": "Made with create-react-library",
+  "description": "An Infinite Accordion for react",
   "author": "alvst",
   "license": "MIT",
   "repository": "alvst/infinite-accordion",
