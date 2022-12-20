@@ -46,7 +46,7 @@ function NestedDropdown(){
 
 function DropdownButtonOne(){
   return(
-<>Button 1</>
+    <>Button 1</>
   )
 }
 
@@ -70,7 +70,7 @@ function DropdownContent2() {
 
 ## Future Features
 
-Right now, the background of the button is limited to the color of the parent. This is a limitation that I missed when originally creating the
+Right now, the background of the button is limited to the color of the parent. This is a limitation that I missed when originally creating the package. I plan to fix this in the future. Additionally, I plan to fix the inability to use classes for styling.
 
 ## License
 
