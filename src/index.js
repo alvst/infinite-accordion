@@ -78,7 +78,11 @@ export default function InfiniteDropdown(props) {
     const renderer = [];
     for (let i = 0; i < props.dropdownContent.length; i++) {
       renderer.push(
-        <div key={i}>
+        <div
+          key={i}
+          style={props.dropdownStyle[i]}
+          className={props.dropdownClass[i]}
+        >
           <div ref={(ref) => (divRef2.current[i] = ref)}>
             {/* This style is a complete hack and I don't know why its required but removing it makes the div height calculated incorrectly. Feel free to try it yourself and if you know why this is the case, please fill a PR */}
             <div style={{ border: "1px transparent solid" }}>
@@ -87,6 +91,7 @@ export default function InfiniteDropdown(props) {
             {i < props.dropdownContent.length - 1 ? (
               <button
                 style={props.buttonStyle[i + 1]}
+                className={props.buttonClass[i + 1]}
                 ref={(ref) => (divRef.current[i] = ref)}
                 onClick={() => toggleDropdown6(i + 1)}
               >
@@ -104,6 +109,7 @@ export default function InfiniteDropdown(props) {
     <div>
       <button
         style={({ cursor: "grab" }, props.buttonStyle[0])}
+        className={props.buttonClass[0]}
         onClick={() => toggleDropdown6(0)}
       >
         {props.buttonContent[0]}
@@ -117,7 +123,7 @@ export default function InfiniteDropdown(props) {
           transition: `max-height ${delayTiming}s ease`,
         }}
       >
-        <div style={{ border: "1px transparent solid" }}>{Render()}</div>
+        <div style={{ border: "1px none solid" }}>{Render()}</div>
       </div>
     </div>
   );

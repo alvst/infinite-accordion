@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Styles.module.css";
 
 import InfiniteDropdown from "infinite-accordion";
 
@@ -26,6 +27,22 @@ const App = () => {
             border: "none",
           },
         ]}
+        // dropdownClass={[styles["dropdown-style"]]}
+        dropdownClass={[styles["dropdown-style"], styles["dropdown-style"]]}
+        dropdownStyle={[{}, { backgroundColor: "aqua" }]}
+        buttonClass={[
+          styles["pink-background"],
+          {},
+          {},
+          // { borderRadius: "30px", padding: "30px" },
+          {
+            backgroundColor: "yellow",
+            borderRadius: "30px",
+            padding: "30px",
+            outline: "none",
+            border: "none",
+          },
+        ]}
         dropdownContent={[
           <>
             <h1>
@@ -37,10 +54,7 @@ const App = () => {
               You can, of course, have basically anything within these
               dropdowns, including text, images, buttons, etc.
             </p>
-            <img
-              src="https://via.placeholder.com/350x150"
-              alt="Example Image"
-            />
+            <img src="https://via.placeholder.com/350x150" alt="Example" />
             <p>
               <button onClick={() => alert("Hello World")}>Click Me</button>
             </p>
@@ -107,11 +121,18 @@ function ComingSoon() {
     <>
       <h1>More Features coming soon</h1>
       <ul>
-        <li>Better Styling support</li>
+        <li>
+          <strike>Better Styling support</strike> Support Added in Version 1.0.1
+        </li>
 
         <ul>
-          <li>Styling with Classes</li>
-          <li>Better Styling of dropdown Items</li>
+          <li>
+            <strike>Styling with Classes</strike> Support Added in Version 1.0.1
+          </li>
+          <li>
+            <strike>Better Styling of dropdown Items</strike> Support Added in
+            Version 1.0.1
+          </li>
         </ul>
 
         <li>Ability to click the entire element to open/close</li>
