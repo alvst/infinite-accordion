@@ -10,14 +10,19 @@ npm install --save infinite-accordion
 
 ```jsx
 import React, { Component } from "react";
-
 import InfiniteDropdown from "infinite-accordion";
 
 class Example extends Component {
   render() {
       <InfiniteDropdown
         buttonContent={[<DropdownButtonOne />, <button> Nested Button 2 Dropdown</button>, <Content />]}
+        dropdownClass={[styles["dropdown-style"], styles["dropdown-style"]]}
+        dropdownStyle={[{}, { backgroundColor: "aqua" }]}
         buttonStyle={[{ backgroundColor: "red", width: "100%" }]}
+        buttonClass={[
+          styles["pink-background"],
+          {},
+        ]}
         dropdownContent={[
           <div style={{ backgroundColor: "green" }}>
             <h1>Unlike other Dropdown Libraries, Infinite Accordion Dropdown allows you to have as many nested dropdowns as you want</h1>
@@ -35,6 +40,11 @@ class Example extends Component {
   }
 }
 
+function DropdownButtonOne(){
+  return(
+    <div style={{background: 'transparent',  border: '0px solid' }}>Styled button</div>
+  )
+}
 
 function NestedDropdown(){
   return(
@@ -44,19 +54,11 @@ function NestedDropdown(){
   )
 }
 
-function DropdownButtonOne(){
+function Content(){
   return(
-    <>Button 1</>
+    <>Some Nice Fun Content</>
   )
 }
-
-function DropdownButtonOne(){
-  return(
-    <div style={{background: 'transparent',  border: '0px solid' }}>Styled button</div>
-  )
-}
-
-
 
 function DropdownContent2() {
   return (
@@ -70,7 +72,7 @@ function DropdownContent2() {
 
 ## Future Features
 
-Right now, the background of the button is limited to the color of the parent. This is a limitation that I missed when originally creating the package. I plan to fix this in the future. Additionally, I plan to fix the inability to use classes for styling.
+There are a few features I'm considering adding like the ability to use a custom button for dropping down the content.
 
 ## License
 

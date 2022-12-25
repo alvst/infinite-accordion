@@ -18,7 +18,6 @@ const App = () => {
           {},
           {},
           {},
-          // { borderRadius: "30px", padding: "30px" },
           {
             backgroundColor: "yellow",
             borderRadius: "30px",
@@ -27,14 +26,12 @@ const App = () => {
             border: "none",
           },
         ]}
-        // dropdownClass={[styles["dropdown-style"]]}
         dropdownClass={[styles["dropdown-style"], styles["dropdown-style"]]}
         dropdownStyle={[{}, { backgroundColor: "aqua" }]}
         buttonClass={[
           styles["pink-background"],
           {},
           {},
-          // { borderRadius: "30px", padding: "30px" },
           {
             backgroundColor: "yellow",
             borderRadius: "30px",
